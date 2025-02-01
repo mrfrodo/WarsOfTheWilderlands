@@ -9,6 +9,10 @@ document.getElementById('start-game').addEventListener('click', () => {
         .catch(error => console.error('Error starting game:', error));
 });
 
+document.getElementById("register-player").addEventListener("click", function() {
+    window.open("/register.html", "Register Player", "width=500,height=500");
+});
+
 function displayGameCode(gameCode) {
     let gameInfo = document.getElementById('gameInfo');
     gameInfo.innerHTML = `<h2>Game Code: ${gameCode}</h2>`;

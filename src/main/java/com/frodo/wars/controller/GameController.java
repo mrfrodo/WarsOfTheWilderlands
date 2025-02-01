@@ -73,26 +73,11 @@ public class GameController {
         return response;
     }
 
-    private char[][] generateBattleMap(int width, int height) {
-        char[][] map = new char[height][width];
-        Random random = new Random();
-
-        // Terrain types: 'H' = Hill, 'R' = River, 'M' = Mountain, '.' = Plain
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int rand = random.nextInt(10); // Generate a number between 0-9
-
-                if (rand < 2) {
-                    map[y][x] = 'R'; // 20% chance of river
-                } else if (rand < 5) {
-                    map[y][x] = 'M'; // 30% chance of mountain
-                } else if (rand < 7) {
-                    map[y][x] = 'H'; // 20% chance of hill
-                } else {
-                    map[y][x] = '.'; // 30% chance of plain
-                }
-            }
-        }
-        return map;
+    // Endpoint to move a unit from one grid position to another
+    @PostMapping("/register")
+    public Map<String, String> register(@RequestBody Map<String, String> request) {
+        return new HashMap<>();
     }
+
+
 }
