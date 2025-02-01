@@ -6,6 +6,7 @@ import com.frodo.wars.service.GameService;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 @RestController
@@ -19,12 +20,11 @@ public class GameController {
 
     // Endpoint to start a new game
     @PostMapping("/startGame")
-    public Map<String, String> startGame() {
-        // Call service to create a new game session
-        String gameCode = gameService.startNewGame();
-        Map<String, String> response = new HashMap<>();
-        response.put("gameCode", gameCode);
-        return response;
+    public Map<String, Object> startGame() {
+        int width = 40;  // Map width
+        int height = 15; // Map height
+
+        return gameService.startNewGame(width, height);
     }
 
     // Endpoint to join an existing game
@@ -71,5 +71,28 @@ public class GameController {
             response.put("message", "Error moving unit.");
         }
         return response;
+    }
+
+    private char[][] generateBattleMap(int width, int height) {
+        char[][] map = new char[height][width];
+        Random random = new Random();
+
+        // Terrain types: 'H' = Hill, 'R' = River, 'M' = Mountain, '.' = Plain
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int rand = random.nextInt(10); // Generate a number between 0-9
+
+                if (rand < 2) {
+                    map[y][x] = 'R'; // 20% chance of river
+                } else if (rand < 5) {
+                    map[y][x] = 'M'; // 30% chance of mountain
+                } else if (rand < 7) {
+                    map[y][x] = 'H'; // 20% chance of hill
+                } else {
+                    map[y][x] = '.'; // 30% chance of plain
+                }
+            }
+        }
+        return map;
     }
 }
