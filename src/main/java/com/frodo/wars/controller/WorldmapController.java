@@ -19,10 +19,16 @@ public class WorldmapController {
     private HeroRepository heroRepository;
 
     @GetMapping("/worldmap")
-    public String showWorldPage(Model model) {
+    public String map2(Model model) {
+        model.addAttribute("message", "Welcome to the World Map. Soon to show some terrain...please wait...");
+        return "worldmap";
+    }
+
+    @GetMapping("/worldmap2")
+    public String map1(Model model) {
         Iterable<Hero> heroes = heroRepository.findAll();
         model.addAttribute("heroes", heroes);
-        return "worldmap";
+        return "worldmap2";
     }
 
     @GetMapping("/api/map")

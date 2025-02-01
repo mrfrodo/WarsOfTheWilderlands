@@ -5,18 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Wars of the Wilderlands</title>
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.8.4/dist/htmx.min.js"></script>
+
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-<h1>Welcome to Wars of the Wilderlands</h1>
-<p>Prepare for an epic journey through the wilderness! Your destiny awaits in the far reaches of the wild.</p>
+<div class="container">
+    <h1>Welcome to Wars of the Wilderlands</h1>
+    <p>Prepare for an epic journey through the wilderness! Your destiny awaits in the far reaches of the wild.</p>
 
-<button class="button" onclick="window.location.href='/worldmap'">
-    Explore the World
-</button>
+    <!-- Optional: Hero image to set the tone -->
+    <img src="https://www.example.com/hero-image.jpg" alt="Epic Wilderness" class="hero-image">
 
-<div id="dynamic-content"></div>
+    <!-- Buttons -->
+    <div>
+        <button class="button" onclick="window.location.href='/worldmap'">
+            Explore the World
+        </button>
+
+        <button class="button" hx-get="/dynamic-content" hx-target="#dynamic-content" hx-swap="outerHTML">
+            Add player
+        </button>
+    </div>
+
+    <!-- Placeholder for dynamic content -->
+    <div id="dynamic-content" class="show"></div>
+</div>
 
 </body>
 </html>
