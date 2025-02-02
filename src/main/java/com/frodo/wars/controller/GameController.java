@@ -21,6 +21,7 @@ public class GameController {
     // Endpoint to start a new game
     @PostMapping("/startGame")
     public Map<String, Object> startGame() {
+        System.out.println("START NEW GAME");
         int width = 40;  // Map width
         int height = 15; // Map height
 
@@ -76,6 +77,7 @@ public class GameController {
     // Endpoint to move a unit from one grid position to another
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody Map<String, String> request) {
+        System.out.println("REGISTER NEW PLAYER");
         return new HashMap<>();
     }
 
